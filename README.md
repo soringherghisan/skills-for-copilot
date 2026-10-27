@@ -79,6 +79,16 @@ same name as a skill, compare the existing `SKILL.md` with the repository's
 version. If they differ, ask the user before overwriting — do not replace
 files without confirmation.
 
+### Step 5 — Smoke test
+
+Tell the user to open a new session and check the `/` menu: every installed
+skill must appear there, invocable by its ID.
+
+**Criterion:** the user confirms each installed skill shows up in the `/`
+menu. Report any skill that does not — that is a surface-specific bug with
+the `disable-model-invocation` flag (known in GitHub Copilot CLI and the VS
+Code Agents window), not a failed install.
+
 ---
 
 ## Manual install (for humans)
