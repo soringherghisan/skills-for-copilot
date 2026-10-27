@@ -14,8 +14,13 @@ standard (OpenCode, Claude Code, Codex, Cursor).
 | `caveman` | `/caveman` | Terse, low-fluff response voice. Technical payload stays verbatim. |
 | `ultracave` | `/ultracave` | Caveman with the grammar stripped: fragments, maximum compression. |
 | `megacave` | `/megacave` | Caveman in Classical Chinese (文言文). |
+| `writing-for-agents` | `/writing-for-agents` | Reference for writing documents agents consume: skills, AGENTS.md, context pointers. |
+| `teach` | `/teach` | Turns a directory into a stateful teaching workspace: mission, vetted resources, HTML lessons, learning records across sessions. |
+| `grilling` | `/grilling` | Relentless interview about a plan or design, worked as a decision tree in rounds. |
+| `grill-me` | `/grill-me` | Alias that invokes the `grilling` skill. |
+| `wait-what` | `/wait-what` | Re-pitches a message that didn't land, in plain English, using the workspace glossary. |
 
-All six are **user-invoked**: they appear in the `/` menu but the agent never
+All eleven are **user-invoked**: they appear in the `/` menu but the agent never
 loads them on its own (`disable-model-invocation: true`).
 
 ---
@@ -46,8 +51,10 @@ install target:
 cp -r skills/<skill-id> <install-target>/<skill-id>
 ```
 
-**Criterion:** each of the six skill directories exists at
-`<install-target>/<skill-id>/SKILL.md`.
+**Criterion:** every skill directory under `skills/` exists at
+`<install-target>/<skill-id>/SKILL.md`, including skills with supporting
+files (`writing-for-agents/SKILL-MECHANICS.md`, `teach/*-FORMAT.md`,
+`learning-opportunities/resources/`, `orient/resources/`).
 
 ### Step 3 — Verify
 
@@ -55,14 +62,14 @@ For each installed skill, read the frontmatter of
 `<install-target>/<skill-id>/SKILL.md` and confirm the `name:` value matches
 the directory name.
 
-**Criterion:** six skills verified, zero mismatches.
+**Criterion:** all skills verified, zero mismatches.
 
 ### Step 4 — Report
 
 Tell the user:
 
 - The install target used, and why (which of the three rules matched)
-- The six installed skill IDs
+- The installed skill IDs (one per skill directory copied)
 - That each is invoked with `/skill-id` (for example `/show-me`) and will not
   trigger automatically
 - That skills take effect in a new session
